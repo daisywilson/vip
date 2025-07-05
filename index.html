@@ -72,25 +72,26 @@
     <img src="profilbild.jpg" alt="Profilbild" class="avatar" />
     <h1>Daisy Wilson🌺</h1>
 
-    <a href="https://www.snapchat.com/add/daisysmilkies" class="link-btn" target="_blank">Snapchat</a>
-
+    <a href="#" class="link-btn" onclick="track('Snapchat'); window.open('https://www.snapchat.com/add/daisysmilkies', '_blank')">Snapchat</a>
     <a href="#" class="link-btn" onclick="openHidden(event)">VIP-Zugang</a>
   </div>
 
   <script>
-    const trackingUrl = "https://script.google.com/macros/s/AKfycbxrJmKzKYpTQydo2hSacApqzn6Z6wZ5p9NA9-5eS11opF9VFJU2wg-ZW9jQWGANW1aM/exec";
+    const trackingUrl = "https://script.google.com/macros/s/AKfycbwh0E7Ftr43M0YudjmL6hNJ2uyZkizmVGeRcE0S9OL64EHr2-hYfbIvpvcUgOks1ao8/exec";
 
-    function track(eventName){
-      fetch(trackingUrl, {
-        method: "POST",
-        body: JSON.stringify({
-          event: eventName,
-          referrer: document.referrer,
-          userAgent: navigator.userAgent
-        }),
-        headers: {"Content-Type": "application/json"}
+    function track(eventName) {
+      const params = new URLSearchParams({
+        event: eventName,
+        referrer: document.referrer,
+        userAgent: navigator.userAgent
       });
+      const img = new Image();
+      img.src = `${trackingUrl}?${params.toString()}`;
     }
+
+    window.addEventListener("load", () => {
+      track("Seitenaufruf");
+    });
     
     function openHidden(event) {
       event.preventDefault();
