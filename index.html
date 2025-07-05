@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daisy Wilson</title>
+  <style>
+    /* Hintergrundbild */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('hintergrundbild.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: sans-serif;
+      color: white;
+    }
+
+    /* Halbtransparenter Overlay für Lesbarkeit */
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* Hauptcontainer */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 4em 1em;
+      text-align: center;
+    }
+
+    /* Profilbild */
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 1em;
+      border: 2px solid white;
+    }
+
+    /* Link-Buttons */
+    .link-btn {
+      display: block;
+      width: 100%;
+      margin: 1em 0;
+      padding: 1em;
+      font-size: 1.1em;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <img src="profilbild.jpg" alt="Profilbild" class="avatar" />
+    <h1>Daisy Wilson🌺</h1>
+
+    <a href="https://www.snapchat.com/add/daisysmilkies" class="link-btn" target="_blank">Snapchat</a>
+
+    <a href="#" class="link-btn" onclick="openHidden(event)">VIP-Zugang</a>
+  </div>
+
+  <script>
+    function openHidden(event) {
+      event.preventDefault();
+      const b64 = "aHR0cHM6Ly9vbmx5ZmFucy5jb20vZGFpc3l3aWxzb24=";
+      const url = atob(b64);
+      const ua = navigator.userAgent.toLowerCase();
+      const isInApp = ua.includes("instagram") || ua.includes("fbav") || ua.includes("tiktok");
+
+      if (isInApp) {
+        window.location = url;
+      } else {
+        try{
+            window.open(url, "_blank") || (window.location = url);
+        } catch(e){
+            window.location = url;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
