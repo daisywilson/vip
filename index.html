@@ -2,113 +2,84 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daisy Wilson</title>
-  <style>
-    /* Hintergrundbild */
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('hintergrundbild.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: sans-serif;
-      color: white;
-    }
-
-    /* Halbtransparenter Overlay für Lesbarkeit */
-    .overlay {
-      background: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    /* Hauptcontainer */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 4em 1em;
-      text-align: center;
-    }
-
-    /* Profilbild */
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 1em;
-      border: 2px solid white;
-    }
-
-    /* Link-Buttons */
-    .link-btn {
-      display: block;
-      width: 100%;
-      margin: 1em 0;
-      padding: 1em;
-      font-size: 1.1em;
-      background: white;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      cursor: pointer;
-    }
-
-    .link-btn:hover {
-      background: #ddd;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profilseite</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="overlay"></div>
-  <div class="container">
-    <img src="profilbild.jpg" alt="Profilbild" class="avatar" />
-    <h1>Daisy Wilson🌺</h1>
+  <div class="background-blur"></div>
+  
+  <div class="page">
 
-    <a href="#" class="link-btn" onclick="track('Snapchat'); window.open('https://www.snapchat.com/add/daisysmilkies', '_blank')">Snapchat</a>
-    <a href="#" class="link-btn" onclick="openHidden(event)">VIP-Zugang</a>
+    <div class="header-img">
+      <img src="profilbild.jpg" alt="Header" />
+    </div>
+
+    <div class="profile-info">
+      <h1>Daisy Wilson🌺</h1>
+      <p class="username">@daisywilson</p>
+
+      <div class="icon-row">
+        <a href="https://www.instagram.com/farmgirldaisyy" target="_blank"><img src="Instagram_icon.webp" alt="Instagram"></a>
+        <a href="#" onclick="goSecret()" class="secret-link"><img src="icon.webp" alt="Secret"></a>
+        <a href="https://www.tiktok.com/@daisykcbnvk?_t=ZP-8y6SgYB9OP8&_r=1" target="_blank"><img src="tiktok_icon.webp" alt="TikTok"></a>
+        <a href="https://x.com/Daisysmilkies" target="_blank"><img src="twitter_icon.webp" alt="X"></a>
+        <a href="https://www.snapchat.com/add/daisysmilkies" target="_blank"><img src="snapchat_icon.webp" alt="Snapchat"></a>
+      </div>
+
+      <p class="details">19 ✨ | FLORIDA<br>snap: daisysmilkies</p>
+    </div>
+
+    <div class="link-grid">
+      <a href="#" onclick="goSecret()" class="big-card">
+        <img src="secret.jpeg" alt="My Secret" />
+        <span class="label">My Secret</span>
+      </a>
+
+      <div class="small-grid">
+        <a href="https://www.instagram.com/farmgirldaisyy" target="_blank" class="card">
+          <img src="instagram.jpeg" alt="Instagram" />
+          <span class="label">Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@daisykcbnvk?_t=ZP-8y6SgYB9OP8&_r=1" target="_blank" class="card">
+          <img src="tiktok.jpeg" alt="TikTok" />
+          <span class="label">TikTok</span>
+        </a>
+        <a href="https://x.com/Daisysmilkies" target="_blank" class="card">
+          <img src="twitter.jpeg" alt="Twitter" />
+          <span class="label">Twitter</span>
+        </a>
+        <a href="https://www.snapchat.com/add/daisysmilkies" target="_blank" class="card">
+          <img src="snapchat.jpeg" alt="Snapchat" />
+          <span class="label">Snapchat</span>
+        </a>
+      </div>
+    
+      <div class="image-gallery">
+        <img src="img1.jpeg" alt="Gallery 1" onclick="openLightbox(this)">
+        <img src="img2.jpeg" alt="Gallery 2" onclick="openLightbox(this)">
+        <img src="img3.jpeg" alt="Gallery 3" onclick="openLightbox(this)">
+        <img src="img4.jpeg" alt="Gallery 4" onclick="openLightbox(this)">
+      </div>
+
+      <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Großansicht">
+      </div>
+    </div>
   </div>
 
   <script>
-    const trackingUrl = "https://script.google.com/macros/s/AKfycbwh0E7Ftr43M0YudjmL6hNJ2uyZkizmVGeRcE0S9OL64EHr2-hYfbIvpvcUgOks1ao8/exec";
-
-    function track(eventName) {
-      const params = new URLSearchParams({
-        event: eventName,
-        referrer: document.referrer,
-        userAgent: navigator.userAgent
-      });
-      const img = new Image();
-      img.src = `${trackingUrl}?${params.toString()}`;
+    function openLightbox(img) {
+      document.getElementById("lightbox-img").src = img.src;
+      document.getElementById("lightbox").style.display = "flex";
     }
-
-    window.addEventListener("load", () => {
-      track("Seitenaufruf");
-    });
-    
-    function openHidden(event) {
-      event.preventDefault();
-      const b64 = "aHR0cHM6Ly9vbmx5ZmFucy5jb20vZGFpc3l3aWxzb24=";
-      const url = atob(b64);
-      const ua = navigator.userAgent.toLowerCase();
-      const isInApp = ua.includes("instagram") || ua.includes("fbav") || ua.includes("tiktok");
-
-      if (isInApp) {
-        window.location = url;
-      } else {
-        try{
-            window.open(url, "_blank") || (window.location = url);
-        } catch(e){
-            window.location = url;
-        }
-      }
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+    function goSecret() {
+      const encoded = 'aHR0cHM6Ly9vbmx5ZmFucy5jb20vZGFpc3l3aWxzb24=';
+      const url = atob(encoded);
+      window.open(url, '_blank');
     }
   </script>
 </body>
