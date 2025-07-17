@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.background-blur {
+  background: url('profilbild.jpg') center center / cover no-repeat;
+  position: fixed;
+  top:0; left:0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(20px);
+  opacity: 0.4;
+}
+
+.page {
+  max-width: 480px;
+  margin: auto;
+}
+
+.header-img img {
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: block;
+}
+
+.profile-info {
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  padding: 15px;
+}
+
+.profile-info h1 {
+  margin-bottom: 2px;
+  margin-top: 2px;
+  font-size: 24px;
+}
+
+.username {
+  color: #aaa;
+  margin-bottom: 18px;
+  margin-top: 2px;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.icon-row img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.followers, .details {
+  font-size: 14px;
+  color: #fff;
+  margin: 5px 0;
+}
+
+.link-grid {
+  padding: 15px;
+  background-color: #000;
+}
+
+.big-card {
+  display: block;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.big-card img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.big-card .label {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 25px;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.small-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+.card .label {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.03);
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0);
+  justify-content: center;
+  align-items: center;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
